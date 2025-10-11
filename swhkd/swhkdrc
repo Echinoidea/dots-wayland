@@ -22,7 +22,7 @@ y
 	@enter dirvish_menu && echo -n "dirvish" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode
 
@@ -31,13 +31,13 @@ mode emacs_menu swallow oneoff
 
 # emacs org agenda
 a
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -r -e "(org-agenda-list)"
+	emacsclient -r -e "(org-agenda-list)" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # emacs open calendar
 c
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -r -e "(=calendar)"
+	emacsclient -r -e "(=calendar)" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode
 
@@ -46,46 +46,46 @@ mode dmenu_menu swallow oneoff
 
 # dmenu todo
 t
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-todo.sh
+	~/dmenu-scripts/dmenu-todo.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu yt-dlp
 y
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-ytdlp.sh
+	~/dmenu-scripts/dmenu-ytdlp.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu mpc
 m
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-mpc.sh
+	~/dmenu-scripts/dmenu-mpc.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu power
 p 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-power.sh
+	~/dmenu-scripts/dmenu-power.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu config
 c 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-dots.sh
+	~/dmenu-scripts/dmenu-dots.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu wal
 w 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && /home/gabriel/dmenu-scripts/dmenu-wal.sh
+	/home/gabriel/dmenu-scripts/dmenu-wal.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu record screenshare
 r 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-record.sh
+	~/dmenu-scripts/dmenu-record.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu goto to window (bspwm)
 g
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-bspwm-goto-window.sh
+	~/dmenu-scripts/dmenu-bspwm-goto-window.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu read book with zathura
 b
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-books.sh
+	~/dmenu-scripts/dmenu-books.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu select soundcard
 a
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-soundcard.sh
+	~/dmenu-scripts/dmenu-soundcard.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu screenshot
 Print
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-screenshot.sh
+	~/dmenu-scripts/dmenu-screenshot.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu emacs submenu
 e
 	@enter dmenu_emacs_menu && echo -n "dmenu_emacs" > ~/.config/waybar/swhkd-mode
 # dmenu notes
 n
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-notes.sh
+	~/dmenu-scripts/dmenu-notes.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode
 
@@ -94,13 +94,13 @@ mode dmenu_emacs_menu swallow oneoff
 
 # dmenu emacs open project
 p 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-emacs-project.sh
+	~/dmenu-scripts/dmenu-emacs-project.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dmenu manage emacs
 m
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && ~/dmenu-scripts/dmenu-emacs-manage.sh
+	~/dmenu-scripts/dmenu-emacs-manage.sh && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode
 
@@ -109,16 +109,16 @@ mode open_menu swallow oneoff
 
 # emacsclient
 e 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -a '' -c
+	emacsclient -a '' -c && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # firefox
 f
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && firefox
+	firefox && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # rmpc
 m
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && st -e bash -c 'cat ~/.cache/wal/sequences && rmpc'
+	st -e bash -c 'cat ~/.cache/wal/sequences && rmpc' && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode
 
@@ -127,21 +127,21 @@ mode dirvish_menu swallow oneoff
 
 # dirvish wallpapers
 w 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -c -e "(dirvish \"~/Pictures/wallpapers/\")"
+	emacsclient -c -e "(dirvish \"~/Pictures/wallpapers/\")" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dirvish documents
 d 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -c -e "(dirvish \"~/Documents/\")"
+	emacsclient -c -e "(dirvish \"~/Documents/\")" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dirvish pictures
 p 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -c -e "(dirvish \"~/Pictures/\")"
+	emacsclient -c -e "(dirvish \"~/Pictures/\")" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dirvish books
 b 
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -c -e "(dirvish \"~/Documents/books\")"
+	emacsclient -c -e "(dirvish \"~/Documents/books\")" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 # dirvish videos
 v
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode && emacsclient -c -e "(dirvish \"~/Videos\")"
+	emacsclient -c -e "(dirvish \"~/Videos\")" && @escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 Escape
-	@escape && echo -n "normal" > ~/.config/waybar/swhkd-mode
+	@escape && @escape  && echo -n "normal" > ~/.config/waybar/swhkd-mode
 
 endmode

@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Path to niri config
 NIRI_CONFIG="$HOME/.config/niri/config.kdl"
 
@@ -13,6 +12,9 @@ sed -i "s/inactive-color \"#[0-9a-fA-F]*\"/inactive-color \"$color0\"/" "$NIRI_C
 # Update the gradient colors
 sed -i "s/active-gradient from=\"#[0-9a-fA-F]*\"/active-gradient from=\"$color4\"/" "$NIRI_CONFIG"
 sed -i "s/to=\"#[0-9a-fA-F]*\"/to=\"$color2\"/" "$NIRI_CONFIG"
+
+# Update overview backdrop-color
+sed -i "s/backdrop-color \"#[0-9a-fA-F]*\"/backdrop-color \"$color0\"/" "$NIRI_CONFIG"
 
 cp ~/.cache/wal/fuzzel.ini ~/.config/fuzzel/fuzzel.ini
 

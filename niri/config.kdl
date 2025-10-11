@@ -199,17 +199,17 @@ layout {
         // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
-        active-color "#D9C6D5"
+        active-color "#81A1C1"
 
-        inactive-color "#3c354b"
+        inactive-color "#2E3440"
 
-        active-gradient from="#D9C6D5" to="#D4B3C9" angle=45
+        active-gradient from="#81A1C1" to="#6F7787" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        // inactive-gradient from="#D9C6D5" to="#D4B3C9" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -219,8 +219,8 @@ layout {
         off
 
         width 2
-        active-color "#D9C6D5"
-        inactive-color "#3c354b"
+        active-color "#81A1C1"
+        inactive-color "#2E3440"
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
@@ -228,9 +228,9 @@ layout {
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
         //
-        // active-gradient from="#D9C6D5" to="#D4B3C9" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        // active-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view" in="oklch longer hue"
 
-        // inactive-gradient from="#D9C6D5" to="#D4B3C9" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view"
     }
 
     // You can enable drop shadows for windows.
@@ -372,7 +372,7 @@ window-rule {
 
 overview {
     zoom 0.5
-    backdrop-color "#000000"
+    backdrop-color "#2E3440"
 
     workspace-shadow {
         // off
@@ -628,7 +628,7 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Ctrl+Escape allow-inhibiting=true { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
