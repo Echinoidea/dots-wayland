@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Path to niri config
+NIRI_CONFIG="$HOME/.config/niri/config.kdl"
+
+# Get pywal colors
+source "${HOME}/.cache/wal/colors.sh"
+
+# Update focus-ring colors in niri config
+sed -i "s/active-color \"#[0-9a-fA-F]*\"/active-color \"$color4\"/" "$NIRI_CONFIG"
+sed -i "s/inactive-color \"#[0-9a-fA-F]*\"/inactive-color \"$color0\"/" "$NIRI_CONFIG"
+
+# Update the gradient colors
+sed -i "s/active-gradient from=\"#[0-9a-fA-F]*\"/active-gradient from=\"$color4\"/" "$NIRI_CONFIG"
+sed -i "s/to=\"#[0-9a-fA-F]*\"/to=\"$color2\"/" "$NIRI_CONFIG"
+
+cp ~/.cache/wal/fuzzel.ini ~/.config/fuzzel/fuzzel.ini
+
+# Reload niri to apply changes
+niri msg action load-config-file
+
+echo "Niri colors updated with pywal"
