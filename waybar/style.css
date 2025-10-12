@@ -1,3 +1,5 @@
+@import "colors-waybar.css";
+
 * {
     border: none;
     border-radius: 0;
@@ -7,8 +9,8 @@
 }
 
 window#waybar {
-    background: transparent;
-    color: white;
+    background: @background;
+    color: @foreground;
 }
 
 #window {
@@ -24,18 +26,18 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
+    color: @foreground;
     border-top: 2px solid transparent;
 }
 
 #workspaces button.focused {
-    color: #c9545d;
-    border-top: 2px solid #c9545d;
+    color: @color1;
+    border-top: 2px solid @color1;
 }
 
 #mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
+    background: @color2; 
+    border-bottom: 3px solid @color1;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {

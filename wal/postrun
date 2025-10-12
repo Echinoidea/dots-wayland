@@ -21,4 +21,7 @@ cp ~/.cache/wal/fuzzel.ini ~/.config/fuzzel/fuzzel.ini
 # Reload niri to apply changes
 niri msg action load-config-file
 
+# Reload waybar
+pkill -SIGUSR2 waybar
+
 echo "Niri colors updated with pywal"
