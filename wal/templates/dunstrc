@@ -1,0 +1,40 @@
+[global]
+    width = 300
+    offset = 5x5
+
+    origin = top-right
+    follow = keyboard
+
+    progress_bar_min_width = 280
+    progress_bar_max_width = 280
+    progress_bar_corner_radius = 0
+
+    padding = 8
+    horizontal_padding = 20
+    frame_width = 0
+    gap_size = 3
+    font = "Maple Mono NF"
+
+    enable_recursive_icon_lookup = true
+    corner_radius = 4
+
+    background = "{background}CC"
+    foreground = "{foreground}CC"
+
+[urgency_low]
+    background = "{background}CC"
+    highlight = "{foreground}CC"
+    frame_color = "{color4}CC"
+    default_icon = "none"
+
+[urgency_normal]
+    background = "{background}CC"
+    highlight = "{foreground}CC"
+    frame_color = "{color4}CC"
+    default_icon = "none"
+
+[urgency_critical]
+    background = "{background}CC"
+    highlight = "{foreground}CC"
+    frame_color = "{color1}CC"
+    default_icon = "none"

@@ -145,7 +145,7 @@ output "HDMI-A-1" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 8
+    gaps 12
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -192,24 +192,24 @@ layout {
         // Uncomment this line to disable the focus ring.
         // off
 
-        width 2
+        width 4
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
         // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
-        active-color "#81A1C1"
+        active-color "#5472A1"
 
-        inactive-color "#2E3440"
+        inactive-color "#0f1116"
 
-        active-gradient from="#81A1C1" to="#6F7787" angle=45
+        active-gradient from="#5472A1" to="#445A89" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        // inactive-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#5472A1" to="#445A89" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -219,8 +219,8 @@ layout {
         off
 
         width 2
-        active-color "#81A1C1"
-        inactive-color "#2E3440"
+        active-color "#5472A1"
+        inactive-color "#0f1116"
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
@@ -228,9 +228,9 @@ layout {
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
         //
-        // active-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        // active-gradient from="#5472A1" to="#445A89" angle=45 relative-to="workspace-view" in="oklch longer hue"
 
-        // inactive-gradient from="#81A1C1" to="#6F7787" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#5472A1" to="#445A89" angle=45 relative-to="workspace-view"
     }
 
     // You can enable drop shadows for windows.
@@ -291,6 +291,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "swww-daemon"
+spawn-at-startup "dunst"
 spawn-at-startup "/home/gabriel/.config/swhkd/swhkd-start.sh"
 // spawn-at-startup "/home/gabriel/.config/waybar/swhkd-mode-watch.sh"
 
@@ -372,7 +373,7 @@ window-rule {
 
 overview {
     zoom 0.5
-    backdrop-color "#2E3440"
+    backdrop-color "#0f1116"
 
     workspace-shadow {
         // off
@@ -408,7 +409,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
