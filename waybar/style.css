@@ -28,6 +28,13 @@ window#waybar {
     background: transparent;
     color: @foreground;
     border-top: 2px solid transparent;
+    border-right: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    box-shadow: none;
+    text-shadow: none;
+    border-style: solid;
+    outline: none;
 }
 
 #workspaces button.focused {

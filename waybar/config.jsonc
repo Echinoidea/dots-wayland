@@ -4,64 +4,71 @@
     "height": 24, // Waybar height
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["niri/workspaces", "custom/swhkd-mode"],
+    "modules-left": ["niri/workspaces", "custom/swhkd-mode", "custom/sep"],
     "modules-center": ["niri/window"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "tray", "clock"],
+    "modules-right": ["network", "pulseaudio", "cpu", "memory", "battery", "tray", "clock"],
     "niri/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1:web": "",
-            "2:code": "",
-            "3:term": "",
-            "4:work": "",
-            "5:music": "",
-            "6:docs": "",
             "urgent": "",
             "focused": "",
             "default": ""
         }
     },
-"custom/swhkd-mode": {
-    "exec": "/home/gabriel/.config/waybar/swhkd-mode-watch.sh",
-    "format": "  {}"
-},
+    "custom/swhkd-mode": {
+        "exec": "/home/gabriel/.config/waybar/swhkd-mode-watch.sh",
+        "format": " {}"
+    },
+    "custom/sep": {
+        "format": " "
+    },
+    "mpd": {
+           "format": "󰽴 {artist} - {title}",
+           "format-stopped": "󰽳 Stopped",
+           "format-paused": " {artist}",
+           "artist-len": 16,
+           "album-len": 16,
+           "album-artist-len": 16,
+           "max-length": 36,
+           "on-click": "mpc toggle"
+    },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
+        "format": "{:%I:%M}",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "{usage}% "
+        "format": " {usage}%"
     },
     "memory": {
-        "format": "{}% "
+        "format": " {}%"
     },
     "battery": {
         "bat": "BAT1",
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": " {essid} [{signalStrength}%]",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠"
     },
     "pulseaudio": {
         //"scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": " {icon} {volume}%",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
