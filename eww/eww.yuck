@@ -18,6 +18,11 @@
 (defpoll syspkgs :interval "600s" "./scripts/get-syspkg-count.sh" )
 (defpoll userpkgs :interval "600s" "./scripts/get-userpkg-count.sh" )
 
+(defpoll os :interval "6000s" "./scripts/get-os.sh" )
+(defpoll kernel :interval "6000s" "./scripts/get-kernel.sh" )
+(defpoll cpu :interval "6000s" "./scripts/get-cpu.sh" )
+(defpoll wm :interval "6000s" "./scripts/get-wm.sh" )
+
 ;; (deflisten swhkd_keys :initial '{"bindings":[]}'
 ;;   "bash -c 'cat /home/gabriel/.config/waybar/swhkd-mode | xargs /home/gabriel/.config/eww/scripts/swhkd-which-key.sh'")
 
@@ -76,10 +81,14 @@
   :stacking "overlay"
   (which_key))
 
+(defvar show_nixos_info false)
+
+;; Update the nixos-button to toggle the variable
 (defwidget nixos-button []
            (tooltip
             (label :text "View NixOS Info")
-            (button :onclick "eww open nixos-info-window" :class "nixos-info-button"
+            (button :onclick "eww update show_nixos_info=${!show_nixos_info} && eww update show_nixos_info=${!show_nixos_info}" 
+                    :class "nixos-info-button"
                     (box :class ""
                          :orientation "h" :space-evenly false :spacing 8
                          (label :class "icon" :text "󱄅" :xalign 0.2  :justify "fill")
@@ -88,6 +97,7 @@
             )
            )
 
+;; Update nixos-info close button
 (defwidget nixos-info []
            (box :class "nixos-info-container" 
                 :orientation "v" 
@@ -96,30 +106,108 @@
                 (box :orientation "h" :space-evenly true :hexpand true :halign "start" :spacing 650
                      (label :class "window-header" :text "NixOS Info")
                      (button :class "close-button " 
-                             :onclick "eww close nixos-info-window"
+                             :onclick "eww update show_nixos_info=false"
                              :halign "end"
                              (label :class "window-header" :text "󰅖"))
                      )
                 (box :class "nixos-info-content" 
                      :orientation "h" 
-                     :space-evenly true
+                     :space-evenly false 
                      :spacing 200
                      :halign "start"
                      :hexpand true
                      (image :path "/home/gabriel/.config/eww/assets/nix.png" :image-width 250 :image-height 250)
-                     (box :class "nixos-info-content-body" :orientation "v" :space-evenly false :spacing 2 :valign "center"
-                          (label :class "icon" :text "Pkgs: ${syspkgs} (System) | ${userpkgs} (User)")
-                          (label :class "icon" :text "")
-                          ) 
-                     )
-                ))
+                     (box :space-evenly false :orientation "v" :spacing 50
+                          (box :class "nixos-info-content-body" :orientation "v" :space-evenly false :spacing 2 :valign "start" :halign "start"
+                               (label :class "icon" :text "${os}")
+                               (label :class "icon" :text "${kernel}")
+                               (label :class "icon" :text "${cpu}")
+                               (label :class "icon" :text "${wm}")
+                               (label :class "icon" :text "Packages: ${syspkgs} (System) | ${userpkgs} (User)")
+                               )
+                          (box :class "nixos-powermenu" :orientation "h" :space-evenly true :spacing 8
+                               (button :class "sleepbutton nerdicon"
+                                       (label :class "powerbutton-menu-label" :text "󰤄" :onclick "systemctl sleep")
+                               )
+                               (button :class "suspendbutton nerdicon"
+                                       (label :class "powerbutton-menu-label" :text "" :onclick "systemctl suspend")
+                               )
+                               (button :class "rebootbutton nerdicon"
+                                       (label :class "powerbutton-menu-label" :text "" :onclick "systemctl reboot")
+                               )
+                               (button :class "powerbutton nerdicon"
+                                       (label :class "powerbutton-menu-label" :text "⏻" :onclick "systemctl poweroff")
+                               )
+                          ))
+                )))
 
+;; Window with revealer inside
 (defwindow nixos-info-window 
            :monitor 0
-           :geometry (geometry :x "0%" :y "0%" :width "600px" :anchor "center")
+           :geometry (geometry :x "0%" :y "36px" :width "600px" :anchor "top center")
            :stacking "overlay"
-           (nixos-info)
-           )
+           (revealer :transition "slidedown"
+                     :reveal show_nixos_info
+                     :duration "350ms"
+                     (nixos-info)))
+
+;; Notification variables
+(defvar notif_show false)
+(defvar notif_id 0)
+(defvar notif_summary "")
+(defvar notif_body "")
+(defvar notif_icon "")
+(defvar notif_app "")
+
+;; Notification widget
+(defwidget notification []
+  (box :class "notification"
+       :orientation "v"
+       :space-evenly false
+       :spacing 8
+    (box :orientation "h"
+         :space-evenly false
+         :spacing 12
+      (label :class "notif-icon"
+             :text ""
+             :valign "start")
+      (box :orientation "v"
+           :space-evenly false
+           :hexpand true
+           :spacing 4
+        (box :orientation "h"
+             :space-evenly false
+          (label :class "notif-app"
+                 :text notif_app
+                 :xalign 0
+                 :hexpand true)
+          (button :class "notif-close"
+                  :onclick "eww update notif_show=false"
+            (label :text "×")))
+        (label :class "notif-summary"
+               :text notif_summary
+               :xalign 0
+               :wrap true
+               :limit-width 40)
+        (label :class "notif-body"
+               :text notif_body
+               :xalign 0
+               :wrap true
+               :limit-width 40
+               :visible {notif_body != ""})))))
+
+;; Notification window
+(defwindow notification-window
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "38px"
+                      :width "380px"
+                      :anchor "top right")
+  :stacking "overlay"
+  (revealer :transition "slidedown"
+            :reveal notif_show
+            :duration "200ms"
+    (notification)))
 
 (defwidget time_widget []
            (tooltip
