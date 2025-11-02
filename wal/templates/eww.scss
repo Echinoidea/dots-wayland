@@ -1,0 +1,178 @@
+* {{
+  all: unset;
+  font-family: "AporeticSansMonoNerdFont", "AporeticSerifMonoNerdFont", monospace;
+  font-size: 14px;
+}}
+
+.bar {{
+    background-color: {background};
+    color: {foreground};
+    padding: 0 0px;
+}}
+
+/* Module containers */
+.left-modules,
+.center-modules,
+.right-modules {{
+                       padding: 2px;
+}}
+
+/* Workspaces */
+.workspaces {{
+  background-color: {color0};
+  border-radius: 8px;
+  padding: 4px;
+}}
+
+.workspace {{
+  padding: 4px 10px;
+  margin: 0 2px;
+  border-radius: 6px;
+  background-color: transparent;
+  color: {color8};
+  transition: all 0.3s ease;
+}}
+
+.workspace:hover {{
+  background-color: {color8};
+  color: {foreground};
+}}
+
+.workspace.active {{
+  background-color: {color4};
+  color: {background};
+  font-weight: bold;
+}}
+
+.workspace.focused {{
+  background-color: {color5};
+  color: {background};
+}}
+
+/* Common widget styling */
+.time-widget,
+.date-widget,
+.cpu-widget,
+.memory-widget,
+.battery-widget,
+.volume-widget {{
+  background-color: {color0};
+  border-radius: 8px;
+  padding: 2px 4px;
+  transition: all 0.3s ease;
+}}
+
+.time-widget:hover,
+.date-widget:hover,
+.cpu-widget:hover,
+.memory-widget:hover,
+.battery-widget:hover,
+.volume-widget:hover {{
+  background-color: {color8};
+}}
+
+/* Icons */
+.icon {{
+  color: {color4};
+  font-size: 16px;
+}}
+
+/* Volume slider */
+.volume-slider {{
+  min-width: 100px;
+}}
+
+.volume-slider trough {{
+  min-height: 8px;
+  min-width: 100px;
+  border-radius: 4px;
+  background-color: {color8};
+}}
+
+.volume-slider highlight {{
+  background-color: {color6};
+  border-radius: 4px;
+}}
+
+.volume-slider slider {{
+  min-height: 8px;
+  min-width: 8px;
+  border-radius: 8px;
+  background-color: {foreground};
+  border: 2px solid {color6};
+}}
+
+/* Values */
+.time,
+.date,
+.value {{
+  color: {foreground};
+  font-weight: 500;
+}}
+
+/* Separator */
+.separator {{
+  color: {color8};
+  padding: 0 4px;
+}}
+
+/* Specific widget colors */
+.cpu-widget .icon {{
+  color: {color1};
+}}
+
+.memory-widget .icon {{
+  color: {color3};
+}}
+
+.battery-widget .icon {{
+  color: {color2};
+}}
+
+.volume-widget .icon {{
+  color: {color6};
+}}
+
+.time-widget .icon {{
+  color: {color4};
+}}
+
+.date-widget .icon {{
+  color: {color5};
+}}
+
+.swhkd_mode.active {{
+                           color: {color1};
+                       }}
+
+
+.which-key {{
+  background-color: {background};
+  border-top: 1px solid {color4};
+  padding: 8px 16px;
+}}
+
+.which-key-title {{
+  color: {color4};
+  font-weight: bold;
+  margin-right: 16px;
+}}
+
+.which-key-container {{
+  padding: 0;
+}}
+
+.which-key-binding {{
+  padding: 0 8px;
+  margin: 0 4px;
+}}
+
+.which-key-key {{
+  color: {color6};
+  font-weight: bold;
+  margin-right: 8px;
+}}
+
+.which-key-desc {{
+  color: {color8};
+}}

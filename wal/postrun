@@ -24,4 +24,6 @@ niri msg action load-config-file
 # Reload waybar
 pkill -SIGUSR2 waybar
 
+eww reload
+
 echo "Niri colors updated with pywal"
