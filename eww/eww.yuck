@@ -15,6 +15,9 @@
 (deflisten swhkd :initial "swhkd off"
            "../waybar/swhkd-mode-watch.sh")
 
+(defpoll syspkgs :interval "600s" "./scripts/get-syspkg-count.sh" )
+(defpoll userpkgs :interval "600s" "./scripts/get-userpkg-count.sh" )
+
 ;; (deflisten swhkd_keys :initial '{"bindings":[]}'
 ;;   "bash -c 'cat /home/gabriel/.config/waybar/swhkd-mode | xargs /home/gabriel/.config/eww/scripts/swhkd-which-key.sh'")
 
@@ -73,22 +76,72 @@
   :stacking "overlay"
   (which_key))
 
+(defwidget nixos-button []
+           (tooltip
+            (label :text "View NixOS Info")
+            (button :onclick "eww open nixos-info-window" :class "nixos-info-button"
+                    (box :class ""
+                         :orientation "h" :space-evenly false :spacing 8
+                         (label :class "icon" :text "󱄅" :xalign 0.2  :justify "fill")
+                         )
+                    )
+            )
+           )
+
+(defwidget nixos-info []
+           (box :class "nixos-info-container" 
+                :orientation "v" 
+                :space-evenly false
+                :spacing 4
+                (box :orientation "h" :space-evenly true :hexpand true :halign "start" :spacing 650
+                     (label :class "window-header" :text "NixOS Info")
+                     (button :class "close-button " 
+                             :onclick "eww close nixos-info-window"
+                             :halign "end"
+                             (label :class "window-header" :text "󰅖"))
+                     )
+                (box :class "nixos-info-content" 
+                     :orientation "h" 
+                     :space-evenly true
+                     :spacing 200
+                     :halign "start"
+                     :hexpand true
+                     (image :path "/home/gabriel/.config/eww/assets/nix.png" :image-width 250 :image-height 250)
+                     (box :class "nixos-info-content-body" :orientation "v" :space-evenly false :spacing 2 :valign "center"
+                          (label :class "icon" :text "Pkgs: ${syspkgs} (System) | ${userpkgs} (User)")
+                          (label :class "icon" :text "")
+                          ) 
+                     )
+                ))
+
+(defwindow nixos-info-window 
+           :monitor 0
+           :geometry (geometry :x "0%" :y "0%" :width "600px" :anchor "center")
+           :stacking "overlay"
+           (nixos-info)
+           )
 
 (defwidget time_widget []
+           (tooltip
+            (label :text "Open Emacs Agenda")
+           (button :onclick "emacsclient -r -e \"(org-agenda-list)\""
            (box :class "time-widget"
                 :orientation "h"
                 :space-evenly false
                 :spacing 8
                 (label :class "icon" :text "")
-                (label :class "time" :text time)))
+                (label :class "time" :text time)))))
 
 (defwidget date_widget []
+           (tooltip
+            (label :text "Open Emacs Calendar")
+           (button :onclick "emacsclient -r -e \"(=calendar)\""
            (box :class "date-widget"
                 :orientation "h"
                 :space-evenly false
                 :spacing 8
                 (label :class "icon" :text "")
-                (label :class "date" :text date)))
+                (label :class "date" :text date)))))
 
 (defwidget cpu_widget []
            (box :class "cpu-widget"
@@ -162,8 +215,9 @@
                 :space-evenly false
                 :halign "center"
                 :spacing 0
-                (cpu_widget)
-                (memory_widget)
+                (nixos-button)
+                (time_widget)
+                (date_widget)
                 ))
 
 (defwidget right []
@@ -176,8 +230,8 @@
                 (separator)
                 (battery_widget)
                 (separator)
-                (time_widget)
-                (date_widget)
+                (cpu_widget)
+                (memory_widget)
                 ))
 
 (defwidget bar [workspace_data]
