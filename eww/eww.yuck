@@ -87,7 +87,7 @@
 (defwidget nixos-button []
            (tooltip
             (label :text "View NixOS Info")
-            (button :onclick "eww update show_nixos_info=${!show_nixos_info} && eww update show_nixos_info=${!show_nixos_info}" 
+            (button :onclick "eww update show_nixos_info=${!show_nixos_info} " 
                     :class "nixos-info-button"
                     (box :class ""
                          :orientation "h" :space-evenly false :spacing 8
@@ -144,7 +144,7 @@
 ;; Window with revealer inside
 (defwindow nixos-info-window 
            :monitor 0
-           :geometry (geometry :x "0%" :y "36px" :width "600px" :anchor "top center")
+           :geometry (geometry :x "0%" :y "38px" :width "600px" :anchor "top center")
            :stacking "overlay"
            (revealer :transition "slidedown"
                      :reveal show_nixos_info
@@ -208,6 +208,226 @@
             :reveal notif_show
             :duration "200ms"
     (notification)))
+
+;; Wallpaper picker variables
+(defvar show_wallpaper_picker false)
+(defvar selected_wallpaper "")
+(defvar wallpaper_palette "dark")
+(defvar wallpaper_colorspace "lab")
+(defvar wallpaper_light_mode false)
+
+;; Wallpaper picker button for bar
+(defwidget wallpaper-picker-button []
+    (button :class "wallpaper-picker-btn"
+            :onclick "eww open wallpaper-picker-window"
+      (label :text "󰸉")))
+
+;; Wallpaper picker widgets
+(defwidget wallpaper-picker []
+  (box :class "wallpaper-picker-container"
+       :orientation "v"
+       :space-evenly false
+       :spacing 12
+    ;; Header with close button
+    (box :orientation "h"
+         :space-evenly false
+         :spacing 8
+      (label :class "wallpaper-header"
+             :text "󰸉 Wallpaper Settings"
+             :xalign 0
+             :hexpand true)
+      (button :class "wallpaper-close"
+              :onclick "eww close wallpaper-picker-window"
+              :halign "end"
+        (label :text "×")))
+    
+    ;; Preview section
+    (box :class "wallpaper-preview-section"
+         :orientation "v"
+         :space-evenly false
+         :spacing 8
+      (label :class "section-label" :text "Preview" :xalign 0)
+      (box :class "wallpaper-preview"
+           :orientation "v"
+           :space-evenly true
+           :spacing 8
+        (image :path {selected_wallpaper != "" ? selected_wallpaper : "~/.config/eww/assets/no-preview.png"}
+               :image-width 350
+               :image-height 200
+               :visible {selected_wallpaper != ""})
+        (label :class "no-preview-text"
+               :text "No wallpaper selected"
+               :visible {selected_wallpaper == ""}))
+      (label :class "wallpaper-path"
+             :text {selected_wallpaper != "" ? selected_wallpaper : ""}
+             :xalign 0
+             :wrap true
+             :limit-width 45
+             :visible {selected_wallpaper != ""}))
+    
+    ;; File selection buttons
+    (box :class "file-buttons"
+         :orientation "h"
+         :space-evenly true
+         :spacing 8
+      (button :class "select-file-btn"
+              :onclick "~/.config/eww/scripts/select-wallpaper.sh &"
+        (box :orientation "h" :spacing 6
+          (label :text "󰈔")
+          (label :text "Browse...")))
+      (button :class "random-file-btn"
+              :onclick "bash -c 'FILE=$(find ~/Pictures/wallpapers -type f -regex \".*\\.\\(jpg\\|jpeg\\|png\\|bmp\\|gif\\|tif\\|tiff\\)$\" | shuf -n 1); eww update selected_wallpaper=\"$FILE\"'"
+        (box :orientation "h" :spacing 6
+          (label :text "🎲")
+          (label :text "Random"))))
+    
+    ;; Palette section
+    (box :class "settings-section"
+         :orientation "v"
+         :space-evenly false
+         :spacing 6
+      (label :class "section-label" :text "Palette" :xalign 0)
+      (box :class "palette-grid"
+           :orientation "v"
+           :space-evenly false
+           :spacing 4
+        ;; Dark palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'dark' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='dark'"
+            (label :text "dark"))
+          (button :class "palette-btn ${wallpaper_palette == 'dark16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='dark16'"
+            (label :text "dark16"))
+          (button :class "palette-btn ${wallpaper_palette == 'darkcomp' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='darkcomp'"
+            (label :text "darkcomp"))
+          (button :class "palette-btn ${wallpaper_palette == 'darkcomp16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='darkcomp16'"
+            (label :text "darkcomp16")))
+        ;; ANSI dark palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'ansidark' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='ansidark'"
+            (label :text "ansidark"))
+          (button :class "palette-btn ${wallpaper_palette == 'ansidark16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='ansidark16'"
+            (label :text "ansidark16"))
+          (button :class "palette-btn ${wallpaper_palette == 'harddark' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='harddark'"
+            (label :text "harddark"))
+          (button :class "palette-btn ${wallpaper_palette == 'harddark16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='harddark16'"
+            (label :text "harddark16")))
+        ;; Hard dark comp palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'harddarkcomp' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='harddarkcomp'"
+            (label :text "harddarkcomp"))
+          (button :class "palette-btn ${wallpaper_palette == 'harddarkcomp16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='harddarkcomp16'"
+            (label :text "harddarkcomp16")))
+        ;; Light palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'light' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='light'"
+            (label :text "light"))
+          (button :class "palette-btn ${wallpaper_palette == 'light16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='light16'"
+            (label :text "light16"))
+          (button :class "palette-btn ${wallpaper_palette == 'lightcomp' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='lightcomp'"
+            (label :text "lightcomp"))
+          (button :class "palette-btn ${wallpaper_palette == 'lightcomp16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='lightcomp16'"
+            (label :text "lightcomp16")))
+        ;; Soft dark palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'softdark' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softdark'"
+            (label :text "softdark"))
+          (button :class "palette-btn ${wallpaper_palette == 'softdark16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softdark16'"
+            (label :text "softdark16"))
+          (button :class "palette-btn ${wallpaper_palette == 'softdarkcomp' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softdarkcomp'"
+            (label :text "softdarkcomp"))
+          (button :class "palette-btn ${wallpaper_palette == 'softdarkcomp16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softdarkcomp16'"
+            (label :text "softdarkcomp16")))
+        ;; Soft light palettes
+        (box :orientation "h" :spacing 4 :space-evenly true
+          (button :class "palette-btn ${wallpaper_palette == 'softlight' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softlight'"
+            (label :text "softlight"))
+          (button :class "palette-btn ${wallpaper_palette == 'softlight16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softlight16'"
+            (label :text "softlight16"))
+          (button :class "palette-btn ${wallpaper_palette == 'softlightcomp' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softlightcomp'"
+            (label :text "softlightcomp"))
+          (button :class "palette-btn ${wallpaper_palette == 'softlightcomp16' ? 'active' : ''}"
+                  :onclick "eww update wallpaper_palette='softlightcomp16'"
+            (label :text "softlightcomp16")))))
+    
+    ;; Colorspace section
+    (box :class "settings-section"
+         :orientation "v"
+         :space-evenly false
+         :spacing 6
+      (label :class "section-label" :text "Color Space" :xalign 0)
+      (box :orientation "h" :spacing 4 :space-evenly true
+        (button :class "colorspace-btn ${wallpaper_colorspace == 'lab' ? 'active' : ''}"
+                :onclick "eww update wallpaper_colorspace='lab'"
+          (label :text "lab"))
+        (button :class "colorspace-btn ${wallpaper_colorspace == 'labmixed' ? 'active' : ''}"
+                :onclick "eww update wallpaper_colorspace='labmixed'"
+          (label :text "labmixed"))
+        (button :class "colorspace-btn ${wallpaper_colorspace == 'lch' ? 'active' : ''}"
+                :onclick "eww update wallpaper_colorspace='lch'"
+          (label :text "lch"))
+        (button :class "colorspace-btn ${wallpaper_colorspace == 'lchmixed' ? 'active' : ''}"
+                :onclick "eww update wallpaper_colorspace='lchmixed'"
+          (label :text "lchmixed"))
+        (button :class "colorspace-btn ${wallpaper_colorspace == 'lchansi' ? 'active' : ''}"
+                :onclick "eww update wallpaper_colorspace='lchansi'"
+          (label :text "lchansi"))))
+    
+    ;; Light mode toggle
+    (box :class "settings-section"
+         :orientation "v"
+         :space-evenly false
+         :spacing 6
+      (label :class "section-label" :text "Mode" :xalign 0)
+      (box :orientation "h" :spacing 4 :space-evenly true
+        (button :class "mode-btn ${!wallpaper_light_mode ? 'active' : ''}"
+                :onclick "eww update wallpaper_light_mode=false"
+          (box :orientation "h" :spacing 6
+            (label :text "🌙")
+            (label :text "Dark")))
+        (button :class "mode-btn ${wallpaper_light_mode ? 'active' : ''}"
+                :onclick "eww update wallpaper_light_mode=true"
+          (box :orientation "h" :spacing 6
+            (label :text "☀")
+            (label :text "Light")))))
+    
+    ;; Apply button
+    (button :class "apply-wallpaper-btn ${selected_wallpaper == '' ? 'disabled' : ''}"
+            :onclick "bash -c '[ -n \"${selected_wallpaper}\" ] && ~/.config/eww/scripts/set-wallpaper.sh \"${selected_wallpaper}\" \"${wallpaper_colorspace}\" \"${wallpaper_palette}\" \"${wallpaper_light_mode}\"'"
+      (box :orientation "h" :spacing 8 :space-evenly true
+        (label :text "󰸉")
+        (label :text "Apply Wallpaper")))))
+
+(defwindow wallpaper-picker-window
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "450px"
+                      :height "97.4%"
+                      :anchor "bottom left")  ;; Changed order
+  :stacking "overlay"
+    (wallpaper-picker))
+
 
 (defwidget time_widget []
            (tooltip
@@ -303,6 +523,7 @@
                 :space-evenly false
                 :halign "center"
                 :spacing 0
+                (wallpaper-picker-button)
                 (nixos-button)
                 (time_widget)
                 (date_widget)
@@ -331,7 +552,7 @@
 
 ;; Windows - one for each monitor
 (defwindow bar-dp1
-           :monitor 0
+           :monitor 1
            :windowtype "dock"
            :geometry (geometry :x "0%"
                                :y "0%"
@@ -342,7 +563,7 @@
            (bar :workspace_data niri_workspaces_dp1))
 
 (defwindow bar-edp1
-           :monitor 1
+           :monitor 0
            :windowtype "dock"
            :geometry (geometry :x "0%"
                                :y "0%"
