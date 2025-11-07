@@ -98,10 +98,12 @@ handle_mode_change() {
     current_mode=$(cat "$SWHKD_MODE_FILE" 2>/dev/null || echo "normal")
     
     if [ "$current_mode" = "normal" ] || [ "$current_mode" = "swhkd off" ]; then
-        eww close which-key-popup 2>/dev/null
+        eww close which-key-popup-edp1 2>/dev/null
+        eww close which-key-popup-dp1 2>/dev/null
     else
         eww update swhkd_keys="$(parse_keys "$current_mode")" 2>/dev/null
-        eww open which-key-popup 2>/dev/null
+        eww open which-key-popup-edp1 2>/dev/null
+        eww open which-key-popup-dp1 2>/dev/null
     fi
 }
 

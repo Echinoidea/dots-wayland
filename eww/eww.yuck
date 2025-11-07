@@ -68,12 +68,22 @@
              :visible {binding.key != ""}
           (label :class "which-key-key" 
                  :text "[${binding.key}]")
-          (label :class "which-key-desc" 
+          (label :class "which-key-desc ${binding.desc =~ '^\\+.*$' ? 'submenu' : ''}" 
                  :text "${binding.desc}"))))))
 
 ;; Add to your bar or create a separate window
-(defwindow which-key-popup
-  :monitor 0
+(defwindow which-key-popup-edp1
+  :monitor "eDP-1"
+  :geometry (geometry :x "50%"
+                      :y "0%"
+                      :width "600px"
+                      :anchor "bottom center")
+  :stacking "overlay"
+  (which_key))
+
+
+(defwindow which-key-popup-dp1
+  :monitor "DP-1"
   :geometry (geometry :x "50%"
                       :y "0%"
                       :width "600px"
@@ -552,7 +562,7 @@
 
 ;; Windows - one for each monitor
 (defwindow bar-dp1
-           :monitor 1
+           :monitor "DP-1"
            :windowtype "dock"
            :geometry (geometry :x "0%"
                                :y "0%"
@@ -563,7 +573,7 @@
            (bar :workspace_data niri_workspaces_dp1))
 
 (defwindow bar-edp1
-           :monitor 0
+           :monitor "eDP-1"
            :windowtype "dock"
            :geometry (geometry :x "0%"
                                :y "0%"
