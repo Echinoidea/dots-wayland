@@ -578,7 +578,7 @@
            :geometry (geometry :x "0%"
                                :y "0%"
                                :width "100%"
-                               :height "24px"
+                               :height "12px"
                                :anchor "top center")
            :reserve (struts :side "top" :distance "24px")
            (bar :workspace_data niri_workspaces_edp1))

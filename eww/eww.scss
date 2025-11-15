@@ -1,52 +1,52 @@
 * {
   all: unset;
-  font-family: "AporeticSansMonoNerdFont", "AporeticSerifMonoNerdFont", monospace;
+  font-family: "FantasqueSansM Nerd Font", "FantasqueSansM", monospace;
   font-size: 14px;
 }
 
 .bar {
-    background-color: #192834;
-    color: #7B9EB7;
-    padding: 0 0px;
+  background-color: #292A44;
+  color: #F1EFF8;
+  padding: 0 0px;
 }
 
 /* Module containers */
 .left-modules,
 .center-modules,
 .right-modules {
-                       padding: 2px;
+  padding: 2px;
 }
 
 /* Workspaces */
 .workspaces {
-  background-color: #192834;
+  background-color: #292A44;
   border-radius: 8px;
   padding: 4px;
 }
 
 .workspace {
-  padding: 4px 10px;
+  padding: 0px 10px;
   margin: 0 2px;
   border-radius: 6px;
   background-color: transparent;
-  color: #3D5E76;
+  color: #666699;
   transition: all 0.3s ease;
 }
 
 .workspace:hover {
-  background-color: #3D5E76;
-  color: #7B9EB7;
+  background-color: #666699;
+  color: #F1EFF8;
 }
 
 .workspace.active {
-  background-color: #4299D7;
-  color: #192834;
+  background-color: #2DE0A7;
+  color: #292A44;
   font-weight: bold;
 }
 
 .workspace.focused {
-  background-color: #80BF40;
-  color: #192834;
+  background-color: #7AA5FF;
+  color: #292A44;
 }
 
 /* Common widget styling */
@@ -56,7 +56,7 @@
 .memory-widget,
 .battery-widget,
 .volume-widget {
-  background-color: #192834;
+  background-color: #292A44;
   border-radius: 8px;
   padding: 2px 4px;
   transition: all 0.3s ease;
@@ -68,12 +68,12 @@
 .memory-widget:hover,
 .battery-widget:hover,
 .volume-widget:hover {
-  background-color: #3D5E76;
+  background-color: #666699;
 }
 
 /* Icons */
 .icon {
-  color: #4299D7;
+  color: #2DE0A7;
   font-size: 16px;
 }
 
@@ -86,11 +86,11 @@
   min-height: 8px;
   min-width: 100px;
   border-radius: 4px;
-  background-color: #3D5E76;
+  background-color: #666699;
 }
 
 .volume-slider highlight {
-  background-color: #47ADF5;
+  background-color: #8EAEE0;
   border-radius: 4px;
 }
 
@@ -98,62 +98,62 @@
   min-height: 8px;
   min-width: 8px;
   border-radius: 8px;
-  background-color: #7B9EB7;
-  border: 2px solid #47ADF5;
+  background-color: #F1EFF8;
+  border: 2px solid #8EAEE0;
 }
 
 /* Values */
 .time,
 .date,
 .value {
-  color: #7B9EB7;
+  color: #F1EFF8;
   font-weight: 500;
 }
 
 /* Separator */
 .separator {
-  color: #3D5E76;
+  color: #666699;
   padding: 0 4px;
 }
 
 /* Specific widget colors */
 .cpu-widget .icon {
-  color: #277FBE;
+  color: #A0A0C5;
 }
 
 .memory-widget .icon {
-  color: #A6F655;
+  color: #AE81FF;
 }
 
 .battery-widget .icon {
-  color: #80BF40;
+  color: #6DFEDF;
 }
 
 .volume-widget .icon {
-  color: #47ADF5;
+  color: #8EAEE0;
 }
 
 .time-widget .icon {
-  color: #4299D7;
+  color: #2DE0A7;
 }
 
 .date-widget .icon {
-  color: #80BF40;
+  color: #7AA5FF;
 }
 
 .swhkd_mode.active {
-                           color: #277FBE;
+                           color: #A0A0C5;
                        }
 
 
 .which-key {
-  background-color: #192834;
-  border-top: 1px solid #4299D7;
+  background-color: #292A44;
+  border-top: 1px solid #2DE0A7;
   padding: 8px 16px;
 }
 
 .which-key-title {
-  color: #4299D7;
+  color: #2DE0A7;
   font-weight: bold;
   margin-right: 16px;
 }
@@ -169,22 +169,22 @@
 
 
 .which-key-key {
-  color: #47ADF5;
+  color: #8EAEE0;
   font-weight: bold;
   margin-right: 8px;
 }
 
 .which-key-desc {
-  color: #80BF40;
+  color: #6DFEDF;
 }
 
 
 .submenu { 
-    color: #4299D7;
+    color: #2DE0A7;
 }
 
 .nixos-info-button:hover {
-    background-color: #277FBE;
+    background-color: #A0A0C5;
     padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 8px;
@@ -202,10 +202,10 @@
 
 .nixos-info-container {
     padding: 8px;
-    background-color: #192834;
+    background-color: #292A44;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    border: 1px solid #3D5E76;
+    border: 1px solid #666699;
     border-top: none;
 }
 
@@ -217,14 +217,14 @@
 .close-button {
     background-color: transparent;
     border: none;
-    color: #7B9EB7;
+    color: #F1EFF8;
     font-size: 24px;
     padding: 4px 8px;
     min-width: 16px;
 }
 
 .close-button:hover {
-    background: #80BF40;
+    background: #6DFEDF;
     border-radius: 4px;
 }
 
@@ -243,22 +243,22 @@
               }
 
 .powerbutton {
-    background-color: #277FBE;
+    background-color: #A0A0C5;
                  }
 .sleepbutton {
-    background-color: #80BF40;
+    background-color: #6DFEDF;
                  }
 .suspendbutton {
-    background-color: #A6F655;
+    background-color: #AE81FF;
                  }
 .rebootbutton {
-    background-color: #4299D7;
+    background-color: #2DE0A7;
                  }
 
 .powerbutton .sleepbutton .suspendbutton .rebootbutton {
                                                                min-width: 64px;
     border: none;
-    color: #192834;
+    color: #292A44;
                                                            }
 
 
@@ -268,19 +268,19 @@
 
 /* Notifications */
 .notification {
-  background-color: #192834;
+  background-color: #292A44;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 0px;
   padding: 16px;
-  border: 1px solid #3D5E76;
+  border: 1px solid #666699;
   border-top: none;
   border-right: none;
   transition: all 0.3s ease;
 }
 
 .notification.critical {
-  border-color: #277FBE;
-  background-color: #192834;
+  border-color: #A0A0C5;
+  background-color: #292A44;
 }
 
 .notification.low {
@@ -290,24 +290,24 @@
 .notif-icon-container {
   font-size: 24px;
   min-width: 32px;
-  color: #4299D7;
+  color: #2DE0A7;
 }
 
 .notif-app {
   font-size: 11px;
-  color: #3D5E76;
+  color: #666699;
   font-weight: 500;
 }
 
 .notif-summary {
   font-size: 14px;
   font-weight: 600;
-  color: #7B9EB7;
+  color: #F1EFF8;
 }
 
 .notif-body {
   font-size: 12px;
-  color: #7B9EB7;
+  color: #F1EFF8;
   margin-top: 4px;
 }
 
@@ -315,15 +315,15 @@
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #3D5E76;
+  color: #666699;
   padding: 0;
   min-width: 20px;
   border-radius: 4px;
 }
 
 .notif-close:hover {
-  color: #7B9EB7;
-  background: #277FBE;
+  color: #F1EFF8;
+  background: #A0A0C5;
 }
 
 /* Wallpaper Picker Button */
@@ -331,47 +331,47 @@
   background-color: transparent;
   padding: 6px 10px;
   border-radius: 8px;
-  color: #80BF40;
+  color: #7AA5FF;
   font-size: 18px;
   transition: all 0.3s ease;
 }
 
 .wallpaper-picker-btn:hover {
-  background-color: #3D5E76;
+  background-color: #666699;
 }
 
 .wallpaper-picker-btn.active {
-  background-color: #80BF40;
-  color: #192834;
+  background-color: #7AA5FF;
+  color: #292A44;
 }
 
 /* Wallpaper Picker Container */
 .wallpaper-picker-container {
-  background-color: #192834;
+  background-color: #292A44;
   padding: 16px;
   min-width: 450px;
-  border-right: 2px solid #4299D7;
+  border-right: 2px solid #2DE0A7;
 }
 
 .wallpaper-header {
   font-size: 20px;
   font-weight: bold;
-  color: #7B9EB7;
+  color: #F1EFF8;
 }
 
 .wallpaper-close {
   background: transparent;
   border: none;
   font-size: 24px;
-  color: #3D5E76;
+  color: #666699;
   padding: 0;
   min-width: 24px;
   border-radius: 4px;
 }
 
 .wallpaper-close:hover {
-  color: #7B9EB7;
-  background: #277FBE;
+  color: #F1EFF8;
+  background: #A0A0C5;
 }
 
 /* Preview Section */
@@ -380,23 +380,23 @@
 }
 
 .wallpaper-preview {
-  background-color: #192834;
-  border: 1px solid #3D5E76;
+  background-color: #292A44;
+  border: 1px solid #666699;
   border-radius: 8px;
   padding: 16px;
   min-height: 220px;
 }
 
 .wallpaper-path {
-  color: #3D5E76;
+  color: #666699;
   font-size: 11px;
   padding: 4px 8px;
-  background-color: #192834;
+  background-color: #292A44;
   border-radius: 4px;
 }
 
 .no-preview-text {
-  color: #3D5E76;
+  color: #666699;
   font-size: 14px;
   font-style: italic;
 }
@@ -414,35 +414,35 @@
 }
 
 .select-file-btn {
-  background-color: #80BF40;
-  color: #192834;
+  background-color: #7AA5FF;
+  color: #292A44;
 }
 
 .select-file-btn:hover {
-  background-color: #47ADF5;
+  background-color: #8EAEE0;
 }
 
 .random-file-btn {
-  background-color: #80BF40;
-  color: #192834;
+  background-color: #6DFEDF;
+  color: #292A44;
 }
 
 .random-file-btn:hover {
-  background-color: #A6F655;
+  background-color: #AE81FF;
 }
 
 /* Settings Sections */
 .settings-section {
   padding: 8px;
-  background-color: #192834;
+  background-color: #292A44;
   border-radius: 8px;
-  border: 1px solid #3D5E76;
+  border: 1px solid #666699;
 }
 
 .section-label {
   font-size: 13px;
   font-weight: bold;
-  color: #4299D7;
+  color: #2DE0A7;
   padding-bottom: 4px;
 }
 
@@ -452,83 +452,83 @@
 }
 
 .palette-btn {
-  background-color: #192834;
-  border: 1px solid #3D5E76;
+  background-color: #292A44;
+  border: 1px solid #666699;
   padding: 6px 8px;
   border-radius: 4px;
-  color: #7B9EB7;
+  color: #F1EFF8;
   font-size: 10px;
   min-width: 80px;
 }
 
 .palette-btn:hover {
-  background-color: #3D5E76;
-  border-color: #4299D7;
+  background-color: #666699;
+  border-color: #2DE0A7;
 }
 
 .palette-btn.active {
-  background-color: #4299D7;
-  color: #192834;
-  border-color: #4299D7;
+  background-color: #2DE0A7;
+  color: #292A44;
+  border-color: #2DE0A7;
   font-weight: bold;
 }
 
 /* Colorspace Buttons */
 .colorspace-btn {
-  background-color: #192834;
-  border: 1px solid #3D5E76;
+  background-color: #292A44;
+  border: 1px solid #666699;
   padding: 8px 12px;
   border-radius: 4px;
-  color: #7B9EB7;
+  color: #F1EFF8;
   font-size: 11px;
 }
 
 .colorspace-btn:hover {
-  background-color: #3D5E76;
-  border-color: #A6F655;
+  background-color: #666699;
+  border-color: #AE81FF;
 }
 
 .colorspace-btn.active {
-  background-color: #A6F655;
-  color: #192834;
-  border-color: #A6F655;
+  background-color: #AE81FF;
+  color: #292A44;
+  border-color: #AE81FF;
 }
 
 /* Mode Buttons */
 .mode-btn {
-  background-color: #192834;
-  border: 1px solid #3D5E76;
+  background-color: #292A44;
+  border: 1px solid #666699;
   padding: 8px 16px;
   border-radius: 4px;
-  color: #7B9EB7;
+  color: #F1EFF8;
   font-size: 12px;
 }
 
 .mode-btn:hover {
-  background-color: #3D5E76;
-  border-color: #80BF40;
+  background-color: #666699;
+  border-color: #6DFEDF;
 }
 
 .mode-btn.active {
-  background-color: #80BF40;
-  color: #192834;
-  border-color: #80BF40;
+  background-color: #6DFEDF;
+  color: #292A44;
+  border-color: #6DFEDF;
 }
 
 /* Apply Button */
 .apply-wallpaper-btn {
-  background-color: #4299D7;
-  color: #192834;
+  background-color: #2DE0A7;
+  color: #292A44;
   padding: 14px;
   border-radius: 8px;
   font-size: 16px;
 }
 
 .apply-wallpaper-btn:hover {
-  background-color: #80BF40;
+  background-color: #7AA5FF;
 }
 
 .apply-wallpaper-btn.disabled {
-  background-color: #3D5E76;
-  color: #192834;
+  background-color: #666699;
+  color: #292A44;
 }
