@@ -1,0 +1,9 @@
+# zathurarc config sample
+
+# colors
+set default-bg     "{{background}}"
+set default-fg     "{{foreground}}"
+set statusbar-bg   "{{background | lighten(0.3)}}"
+set statusbar-fg   "{{foreground | blend("#eeeeee")}}"
+set inputbar-bg    "{{background | complementary}}"
+recolor = true

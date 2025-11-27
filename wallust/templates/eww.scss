@@ -18,8 +18,8 @@
 }
 
 /* Workspaces */
-.workspaces {
-  background-color: {{background}};
+.workspaces { 
+	background-color: {{background}};
   border-radius: 8px;
   padding: 4px;
 }
@@ -29,8 +29,7 @@
   margin: 0 2px;
   border-radius: 6px;
   background-color: transparent;
-  color: {{color8}};
-  transition: all 0.3s ease;
+  color: {{foreground}};
 }
 
 .workspace:hover {
@@ -38,16 +37,40 @@
   color: {{foreground}};
 }
 
-.workspace.active {
-  background-color: {{color4}};
-  color: {{background}};
-  font-weight: bold;
+/* Empty workspace - dim */
+.workspace.empty {
+		background-color: {{background}};
+		color: {{foreground}}
 }
 
-.workspace.focused {
-  background-color: {{color5}};
-  color: {{background}};
+/* Occupied workspace - show indicator */
+.workspace.occupied {
+		background-color: {{background}};
+		color: {{foreground}};
+		border-bottom: 2px solid {{color6}};
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+
 }
+
+/* Focused/Active workspace */
+.workspace.active {
+		background-color: {{color2}};
+		color: {{background}};
+ }
+
+.workspace.focused {
+		background-color: {{color2}};
+		color: {{background}};
+}
+
+/* Urgent workspace */
+.workspace.urgent {
+		background-color: {{color1}};
+		color: {{background}};
+  animation: pulse 1s ease-in-out infinite;
+}
+
 
 /* Common widget styling */
 .time-widget,
