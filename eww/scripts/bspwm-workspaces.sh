@@ -1,0 +1,1 @@
+/nix/store/j128wmmli5dn8ab1iasqlhvvy9xc206s-home-manager-files/.config/eww/scripts/bspwm-workspaces.sh

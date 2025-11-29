@@ -7,13 +7,13 @@
            "scripts/get-volume.sh")
 
 ;; Separate workspace listeners for each monitor
-(deflisten niri_workspaces_dp1 :initial '{"workspaces": []}'
-           "scripts/niri-workspaces.sh DP-1")
-(deflisten niri_workspaces_edp1 :initial '{"workspaces": []}'
-           "scripts/niri-workspaces.sh eDP-1")
+;; (deflisten niri_workspaces_dp1 :initial '{"workspaces": []}'
+;;            "scripts/niri-workspaces.sh DP-1")
+;; (deflisten niri_workspaces_edp1 :initial '{"workspaces": []}'
+;;            "scripts/niri-workspaces.sh eDP-1")
 
-(deflisten swhkd :initial "swhkd off"
-           "../waybar/swhkd-mode-watch.sh")
+;; (deflisten swhkd :initial "swhkd off"
+;;            "../waybar/swhkd-mode-watch.sh")
 
 (defpoll syspkgs :interval "600s" "./scripts/get-syspkg-count.sh" )
 (defpoll userpkgs :interval "600s" "./scripts/get-userpkg-count.sh" )
@@ -23,37 +23,29 @@
 (defpoll cpu :interval "6000s" "./scripts/get-cpu.sh" )
 (defpoll wm :interval "6000s" "./scripts/get-wm.sh" )
 
-;; (deflisten swhkd_keys :initial '{"bindings":[]}'
-;;   "bash -c 'cat /home/gabriel/.config/waybar/swhkd-mode | xargs /home/gabriel/.config/eww/scripts/swhkd-which-key.sh'")
+;; SXHKD mode tracking - listens directly to sxhkd status FIFO
+(defvar swhkd "normal") ;; :initial "normal"
+;;           "~/.config/eww/scripts/sxhkd-status-watch.sh")
 
+;; Bindings are updated by a background script
 (defvar swhkd_keys '{"bindings":[]}')
 
-;; Widgets
-(defwidget workspaces [workspace_data]
-           (box :orientation "h" 
-                :class "workspaces"
-                :space-evenly false
-                (for wsp in {workspace_data.workspaces}
-                     (eventbox :cursor "pointer"
-                               (button :onclick "niri msg action focus-workspace ${wsp.idx}"
-                                       :class "workspace ${wsp.is_active ? 'active' : ''} ${wsp.is_focused ? 'focused' : ''}"
-                                       (label :text "${wsp.idx}"))))))
-
+;; SXHKD mode indicator widget
 (defwidget swhkd_widget []
            (box :orientation "h" 
                 :class "swhkd"
                 :space-evenly false
-                     (eventbox :cursor "pointer"
-                               (button :onclick ""
-                                       (label :class "swhkd_mode ${swhkd == 'normal' ? '' : 'active'}" :text "${swhkd}")))))
+                :visible {swhkd != "normal"}
+                (label :class "swhkd_mode ${swhkd == 'normal' ? '' : 'active'}" 
+                       :text " ${swhkd}")))
 
-;; Which-key widget with simple column layout
-;; Which-key widget as single row
+;; Which-key widget displaying available bindings
 (defwidget which_key []
   (box :class "which-key"
        :orientation "h"
        :space-evenly false
        :spacing 12
+       :visible {swhkd != "normal"}
     (label :class "which-key-title" 
            :text "󰌌 ${swhkd}")
     (box :class "which-key-container"
@@ -71,7 +63,7 @@
           (label :class "which-key-desc ${binding.desc =~ '^\\+.*$' ? 'submenu' : ''}" 
                  :text "${binding.desc}"))))))
 
-;; Add to your bar or create a separate window
+;; Which-key popup windows
 (defwindow which-key-popup-edp1
   :monitor "eDP-1"
   :geometry (geometry :x "50%"
@@ -81,15 +73,50 @@
   :stacking "overlay"
   (which_key))
 
-
 (defwindow which-key-popup-dp1
   :monitor "DP-1"
-  :geometry (geometry :x "50%"
+  :geometry (geometry :x "0%"
                       :y "0%"
                       :width "600px"
                       :anchor "bottom center")
   :stacking "overlay"
   (which_key))
+
+;; Widgets
+(defwidget workspaces [workspace_data]
+           (box :orientation "h" 
+                :class "workspaces"
+                :space-evenly false
+                (for wsp in {workspace_data.workspaces}
+                     (eventbox :cursor "pointer"
+                               (button :onclick "niri msg action focus-workspace ${wsp.idx}"
+                                       :class "workspace ${wsp.is_active ? 'active' : ''} ${wsp.is_focused ? 'focused' : ''}"
+                                       (label :text "${wsp.idx}"))))))
+
+
+(defwidget workspaces-bspwm [monitor]
+  (box :orientation "h" 
+       :class "workspaces"
+       :space-evenly false
+    (for wsp in bspwm_workspaces
+      (eventbox :cursor "pointer"
+                :visible {wsp.monitor == monitor}
+        (button :onclick "bspc desktop -f ${wsp.name}"
+                :class "workspace ${wsp.state == 'focused' ? 'active focused' : wsp.state == 'occupied' ? 'occupied' : wsp.state == 'urgent' ? 'urgent' : 'empty'}"
+          (label :text "${wsp.name}"))))))
+
+
+
+(deflisten bspwm_workspaces :initial "[]"
+  "scripts/bspwm-workspaces.sh")
+
+(defwidget swhkd_widget []
+           (box :orientation "h" 
+                :class "swhkd"
+                :space-evenly false
+                     (eventbox :cursor "pointer"
+                               (button :onclick ""
+                                       (label :class "swhkd_mode ${swhkd == 'normal' ? '' : 'active'}" :text "${swhkd}")))))
 
 (defvar show_nixos_info false)
 
@@ -517,13 +544,13 @@
                 :orientation "v"
                 (label :text "|")))
 
-(defwidget left [workspace_data]
+(defwidget left [workspace_data monitor]
            (box :class "left-modules"
                 :orientation "h"
                 :space-evenly false
                 :halign "start"
                 :spacing 0
-                (workspaces :workspace_data workspace_data)
+                (workspaces-bspwm :monitor monitor)
                 (swhkd_widget)
                 ))
 
@@ -553,10 +580,10 @@
                 (memory_widget)
                 ))
 
-(defwidget bar [workspace_data]
+(defwidget bar [workspace_data monitor]
            (centerbox :class "bar"
                       :orientation "h"
-                      (left :workspace_data workspace_data)
+                      (left :workspace_data workspace_data :monitor monitor)
                       (center)
                       (right)))
 
@@ -570,7 +597,8 @@
                                :height "10px"
                                :anchor "top center")
            :reserve (struts :side "top" :distance "32px")
-           (bar :workspace_data niri_workspaces_dp1))
+					 (bar :workspace_data bspwm_workspaces :monitor "DP-1")
+           )
 
 (defwindow bar-edp1
            :monitor "eDP-1"
@@ -581,4 +609,5 @@
                                :height "12px"
                                :anchor "top center")
            :reserve (struts :side "top" :distance "24px")
-           (bar :workspace_data niri_workspaces_edp1))
+					 (bar :workspace_data bspwm_workspaces :monitor "eDP-1")
+           )

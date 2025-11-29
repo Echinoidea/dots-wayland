@@ -1,53 +1,76 @@
 * {
   all: unset;
-  font-family: "FantasqueSansM Nerd Font", "FantasqueSansM", monospace;
+  font-family: "AporeticSansMonoNerdFont", "AporeticSerifMonoNerdFont", monospace;
   font-size: 14px;
 }
 
 .bar {
-  background-color: #292A44;
-  color: #F1EFF8;
-  padding: 0 0px;
+    background-color: #181616;
+    color: #C5C9C5;
+    padding: 0 0px;
 }
 
 /* Module containers */
 .left-modules,
 .center-modules,
 .right-modules {
-  padding: 2px;
+                       padding: 2px;
 }
 
 /* Workspaces */
-.workspaces {
-  background-color: #292A44;
+.workspaces { 
+	background-color: #181616;
   border-radius: 8px;
   padding: 4px;
 }
 
 .workspace {
-  padding: 0px 10px;
+  padding: 4px 10px;
   margin: 0 2px;
   border-radius: 6px;
   background-color: transparent;
-  color: #666699;
-  transition: all 0.3s ease;
+  color: #C5C9C5;
 }
 
 .workspace:hover {
-  background-color: #666699;
-  color: #F1EFF8;
+  background-color: #A6A69C;
+  color: #C5C9C5;
 }
 
-.workspace.active {
-  background-color: #2DE0A7;
-  color: #292A44;
-  font-weight: bold;
+/* Empty workspace - dim */
+.workspace.empty {
+		background-color: #181616;
+		color: #C5C9C5
 }
+
+/* Occupied workspace - show indicator */
+.workspace.occupied {
+		background-color: #181616;
+		color: #C5C9C5;
+		border-bottom: 2px solid #8EA4A2;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+
+}
+
+/* Focused/Active workspace */
+.workspace.active {
+		background-color: #8A9A7B;
+		color: #181616;
+ }
 
 .workspace.focused {
-  background-color: #7AA5FF;
-  color: #292A44;
+		background-color: #8A9A7B;
+		color: #181616;
 }
+
+/* Urgent workspace */
+.workspace.urgent {
+		background-color: #C4746E;
+		color: #181616;
+  animation: pulse 1s ease-in-out infinite;
+}
+
 
 /* Common widget styling */
 .time-widget,
@@ -56,7 +79,7 @@
 .memory-widget,
 .battery-widget,
 .volume-widget {
-  background-color: #292A44;
+  background-color: #181616;
   border-radius: 8px;
   padding: 2px 4px;
   transition: all 0.3s ease;
@@ -68,12 +91,12 @@
 .memory-widget:hover,
 .battery-widget:hover,
 .volume-widget:hover {
-  background-color: #666699;
+  background-color: #A6A69C;
 }
 
 /* Icons */
 .icon {
-  color: #2DE0A7;
+  color: #8BA4B0;
   font-size: 16px;
 }
 
@@ -86,11 +109,11 @@
   min-height: 8px;
   min-width: 100px;
   border-radius: 4px;
-  background-color: #666699;
+  background-color: #A6A69C;
 }
 
 .volume-slider highlight {
-  background-color: #8EAEE0;
+  background-color: #8EA4A2;
   border-radius: 4px;
 }
 
@@ -98,62 +121,62 @@
   min-height: 8px;
   min-width: 8px;
   border-radius: 8px;
-  background-color: #F1EFF8;
-  border: 2px solid #8EAEE0;
+  background-color: #C5C9C5;
+  border: 2px solid #8EA4A2;
 }
 
 /* Values */
 .time,
 .date,
 .value {
-  color: #F1EFF8;
+  color: #C5C9C5;
   font-weight: 500;
 }
 
 /* Separator */
 .separator {
-  color: #666699;
+  color: #A6A69C;
   padding: 0 4px;
 }
 
 /* Specific widget colors */
 .cpu-widget .icon {
-  color: #A0A0C5;
+  color: #C4746E;
 }
 
 .memory-widget .icon {
-  color: #AE81FF;
+  color: #C4B28A;
 }
 
 .battery-widget .icon {
-  color: #6DFEDF;
+  color: #8A9A7B;
 }
 
 .volume-widget .icon {
-  color: #8EAEE0;
+  color: #8EA4A2;
 }
 
 .time-widget .icon {
-  color: #2DE0A7;
+  color: #8BA4B0;
 }
 
 .date-widget .icon {
-  color: #7AA5FF;
+  color: #A292A3;
 }
 
 .swhkd_mode.active {
-                           color: #A0A0C5;
+                           color: #C4746E;
                        }
 
 
 .which-key {
-  background-color: #292A44;
-  border-top: 1px solid #2DE0A7;
+  background-color: #181616;
+  border-top: 1px solid #8BA4B0;
   padding: 8px 16px;
 }
 
 .which-key-title {
-  color: #2DE0A7;
+  color: #8BA4B0;
   font-weight: bold;
   margin-right: 16px;
 }
@@ -169,22 +192,22 @@
 
 
 .which-key-key {
-  color: #8EAEE0;
+  color: #8EA4A2;
   font-weight: bold;
   margin-right: 8px;
 }
 
 .which-key-desc {
-  color: #6DFEDF;
+  color: #8A9A7B;
 }
 
 
 .submenu { 
-    color: #2DE0A7;
+    color: #8BA4B0;
 }
 
 .nixos-info-button:hover {
-    background-color: #A0A0C5;
+    background-color: #C4746E;
     padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 8px;
@@ -202,10 +225,10 @@
 
 .nixos-info-container {
     padding: 8px;
-    background-color: #292A44;
+    background-color: #181616;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    border: 1px solid #666699;
+    border: 1px solid #A6A69C;
     border-top: none;
 }
 
@@ -217,14 +240,14 @@
 .close-button {
     background-color: transparent;
     border: none;
-    color: #F1EFF8;
+    color: #C5C9C5;
     font-size: 24px;
     padding: 4px 8px;
     min-width: 16px;
 }
 
 .close-button:hover {
-    background: #6DFEDF;
+    background: #8A9A7B;
     border-radius: 4px;
 }
 
@@ -243,22 +266,22 @@
               }
 
 .powerbutton {
-    background-color: #A0A0C5;
+    background-color: #C4746E;
                  }
 .sleepbutton {
-    background-color: #6DFEDF;
+    background-color: #8A9A7B;
                  }
 .suspendbutton {
-    background-color: #AE81FF;
+    background-color: #C4B28A;
                  }
 .rebootbutton {
-    background-color: #2DE0A7;
+    background-color: #8BA4B0;
                  }
 
 .powerbutton .sleepbutton .suspendbutton .rebootbutton {
                                                                min-width: 64px;
     border: none;
-    color: #292A44;
+    color: #181616;
                                                            }
 
 
@@ -268,19 +291,19 @@
 
 /* Notifications */
 .notification {
-  background-color: #292A44;
+  background-color: #181616;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 0px;
   padding: 16px;
-  border: 1px solid #666699;
+  border: 1px solid #A6A69C;
   border-top: none;
   border-right: none;
   transition: all 0.3s ease;
 }
 
 .notification.critical {
-  border-color: #A0A0C5;
-  background-color: #292A44;
+  border-color: #C4746E;
+  background-color: #0D0C0C;
 }
 
 .notification.low {
@@ -290,24 +313,24 @@
 .notif-icon-container {
   font-size: 24px;
   min-width: 32px;
-  color: #2DE0A7;
+  color: #8BA4B0;
 }
 
 .notif-app {
   font-size: 11px;
-  color: #666699;
+  color: #A6A69C;
   font-weight: 500;
 }
 
 .notif-summary {
   font-size: 14px;
   font-weight: 600;
-  color: #F1EFF8;
+  color: #C5C9C5;
 }
 
 .notif-body {
   font-size: 12px;
-  color: #F1EFF8;
+  color: #C8C093;
   margin-top: 4px;
 }
 
@@ -315,15 +338,15 @@
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #666699;
+  color: #A6A69C;
   padding: 0;
   min-width: 20px;
   border-radius: 4px;
 }
 
 .notif-close:hover {
-  color: #F1EFF8;
-  background: #A0A0C5;
+  color: #C5C9C5;
+  background: #C4746E;
 }
 
 /* Wallpaper Picker Button */
@@ -331,47 +354,47 @@
   background-color: transparent;
   padding: 6px 10px;
   border-radius: 8px;
-  color: #7AA5FF;
+  color: #A292A3;
   font-size: 18px;
   transition: all 0.3s ease;
 }
 
 .wallpaper-picker-btn:hover {
-  background-color: #666699;
+  background-color: #A6A69C;
 }
 
 .wallpaper-picker-btn.active {
-  background-color: #7AA5FF;
-  color: #292A44;
+  background-color: #A292A3;
+  color: #181616;
 }
 
 /* Wallpaper Picker Container */
 .wallpaper-picker-container {
-  background-color: #292A44;
+  background-color: #181616;
   padding: 16px;
   min-width: 450px;
-  border-right: 2px solid #2DE0A7;
+  border-right: 2px solid #8BA4B0;
 }
 
 .wallpaper-header {
   font-size: 20px;
   font-weight: bold;
-  color: #F1EFF8;
+  color: #C5C9C5;
 }
 
 .wallpaper-close {
   background: transparent;
   border: none;
   font-size: 24px;
-  color: #666699;
+  color: #A6A69C;
   padding: 0;
   min-width: 24px;
   border-radius: 4px;
 }
 
 .wallpaper-close:hover {
-  color: #F1EFF8;
-  background: #A0A0C5;
+  color: #C5C9C5;
+  background: #C4746E;
 }
 
 /* Preview Section */
@@ -380,23 +403,23 @@
 }
 
 .wallpaper-preview {
-  background-color: #292A44;
-  border: 1px solid #666699;
+  background-color: #0D0C0C;
+  border: 1px solid #A6A69C;
   border-radius: 8px;
   padding: 16px;
   min-height: 220px;
 }
 
 .wallpaper-path {
-  color: #666699;
+  color: #A6A69C;
   font-size: 11px;
   padding: 4px 8px;
-  background-color: #292A44;
+  background-color: #0D0C0C;
   border-radius: 4px;
 }
 
 .no-preview-text {
-  color: #666699;
+  color: #A6A69C;
   font-size: 14px;
   font-style: italic;
 }
@@ -414,35 +437,35 @@
 }
 
 .select-file-btn {
-  background-color: #7AA5FF;
-  color: #292A44;
+  background-color: #A292A3;
+  color: #181616;
 }
 
 .select-file-btn:hover {
-  background-color: #8EAEE0;
+  background-color: #8EA4A2;
 }
 
 .random-file-btn {
-  background-color: #6DFEDF;
-  color: #292A44;
+  background-color: #8A9A7B;
+  color: #181616;
 }
 
 .random-file-btn:hover {
-  background-color: #AE81FF;
+  background-color: #C4B28A;
 }
 
 /* Settings Sections */
 .settings-section {
   padding: 8px;
-  background-color: #292A44;
+  background-color: #0D0C0C;
   border-radius: 8px;
-  border: 1px solid #666699;
+  border: 1px solid #A6A69C;
 }
 
 .section-label {
   font-size: 13px;
   font-weight: bold;
-  color: #2DE0A7;
+  color: #8BA4B0;
   padding-bottom: 4px;
 }
 
@@ -452,83 +475,83 @@
 }
 
 .palette-btn {
-  background-color: #292A44;
-  border: 1px solid #666699;
+  background-color: #0D0C0C;
+  border: 1px solid #A6A69C;
   padding: 6px 8px;
   border-radius: 4px;
-  color: #F1EFF8;
+  color: #C5C9C5;
   font-size: 10px;
   min-width: 80px;
 }
 
 .palette-btn:hover {
-  background-color: #666699;
-  border-color: #2DE0A7;
+  background-color: #A6A69C;
+  border-color: #8BA4B0;
 }
 
 .palette-btn.active {
-  background-color: #2DE0A7;
-  color: #292A44;
-  border-color: #2DE0A7;
+  background-color: #8BA4B0;
+  color: #181616;
+  border-color: #8BA4B0;
   font-weight: bold;
 }
 
 /* Colorspace Buttons */
 .colorspace-btn {
-  background-color: #292A44;
-  border: 1px solid #666699;
+  background-color: #0D0C0C;
+  border: 1px solid #A6A69C;
   padding: 8px 12px;
   border-radius: 4px;
-  color: #F1EFF8;
+  color: #C5C9C5;
   font-size: 11px;
 }
 
 .colorspace-btn:hover {
-  background-color: #666699;
-  border-color: #AE81FF;
+  background-color: #A6A69C;
+  border-color: #C4B28A;
 }
 
 .colorspace-btn.active {
-  background-color: #AE81FF;
-  color: #292A44;
-  border-color: #AE81FF;
+  background-color: #C4B28A;
+  color: #181616;
+  border-color: #C4B28A;
 }
 
 /* Mode Buttons */
 .mode-btn {
-  background-color: #292A44;
-  border: 1px solid #666699;
+  background-color: #0D0C0C;
+  border: 1px solid #A6A69C;
   padding: 8px 16px;
   border-radius: 4px;
-  color: #F1EFF8;
+  color: #C5C9C5;
   font-size: 12px;
 }
 
 .mode-btn:hover {
-  background-color: #666699;
-  border-color: #6DFEDF;
+  background-color: #A6A69C;
+  border-color: #8A9A7B;
 }
 
 .mode-btn.active {
-  background-color: #6DFEDF;
-  color: #292A44;
-  border-color: #6DFEDF;
+  background-color: #8A9A7B;
+  color: #181616;
+  border-color: #8A9A7B;
 }
 
 /* Apply Button */
 .apply-wallpaper-btn {
-  background-color: #2DE0A7;
-  color: #292A44;
+  background-color: #8BA4B0;
+  color: #181616;
   padding: 14px;
   border-radius: 8px;
   font-size: 16px;
 }
 
 .apply-wallpaper-btn:hover {
-  background-color: #7AA5FF;
+  background-color: #A292A3;
 }
 
 .apply-wallpaper-btn.disabled {
-  background-color: #666699;
-  color: #292A44;
+  background-color: #A6A69C;
+  color: #0D0C0C;
 }
